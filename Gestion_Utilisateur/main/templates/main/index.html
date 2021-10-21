@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="Fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>www.site-shadow.groupebsm.org</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <!-- CSS Files -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'css/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href=" {% static 'css/swiper-bundle.min.css' %}" rel="stylesheet">
+  
+
+</head>
+
+<body>
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div class="wow fadeIn">
+        <div class="hero-logo">
+          <img class="" src="{% static 'image/logo.png' %} " alt="SHADOW">
+        </div>
+
+        <h1>Bienvenu dans SHADOW gestion</h1>
+        <h2>Vous pouvez <span class="typed" data-typed-items="créer les utilisateurs, modifier les utilisateurs, supprimer les utilisateurs"></span></h2>
+        <div class="actions">
+          <a href="{% url 'enregistrer' %}" class="btn-get-started">créer</a>
+          <a href="{% url 'liste' %}" class="btn-services">liste des utilisateurs</a>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about">
+      <div class="container wow fadeInUp">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <h3 class="section-title">A propos</h3>
+            <div class="section-title-divider"></div>
+            <p class="section-description">SHADOW est un groupe d'etudiant en genie informatique </p>
+          </div>
+        </div>
+      </div>
+      <div class="container about-container wow fadeInUp">
+        <div class="row">
+
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 about-img">
+            <img src="{% static 'image/about-img.jpg' %} " alt="">
+          </div>
+
+          <div class="col-xs-6 col-sm-6 col-md-6 about-content">
+            <h2 class="about-title">Possibilités offertes à nos utilisateurs</h2>
+            <p class="about-text">
+              Naviguer sur notre site ne demande pas d'exigence car l'accès y est permanent.
+            </p>
+            <p class="about-text">
+               N'importe lequel de nos visiteurs peut effectuer des opérations d'insertions, de suppressions, et de modifications des utilisateurs
+               comme il le souhaite.
+            </p>
+            <p class="about-text">
+              Le site a été réaliser dans le but de tester quelques connaissances apprises dans notre domaine de la programmation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section><!-- End About Section -->
+
+    
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="copyright">
+            &copy; Copyright <strong>SHADOW gestion</strong>. tous les droits reservés
+          </div>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Imperial
+          -->
+            Fait by <a href="#">chadrac brandol</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- JS Files -->
+  <script src="{% static 'js/aos/aos.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/glightbox.min.js' %}"></script>
+  <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/validate.js' %}"></script>
+  <script src="{% static 'Js/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'js/typed.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

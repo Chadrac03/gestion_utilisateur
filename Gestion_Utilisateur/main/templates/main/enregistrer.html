@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="shadow ">
+    
+
+    <!-- Title Page-->
+    <title>www.site-shadow.groupebsm.org</title>
+
+    <!-- Icons font CSS-->
+    <link href="{% static 'css/material-design-iconic-font.min.css' %} " rel="stylesheet" media="all">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'css/daterangepicker.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" media="all">
+    <!-- <link href="{% static 'css/style1.css' %}" rel="stylesheet" media="all"> -->
+</head>
+
+<body id="hero">
+    {% if mod %}
+        <div class="page-wrapper p-t-180 p-b-100 font-robo" >
+            <div class="wrapper wrapper--w960">
+                <div class="card card-2">
+                    <div class="card-heading"></div>
+                    <div class="card-body">
+                        <h2 class="title">Modification</h2>
+                        <form method="POST" action="{% url 'modifier' user.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-header">
+                                <div class="avartar">
+                                    <a href="{{ user.photo.url}}">
+                                        <img src="{{user.photo.url}}" alt="">
+                                    </a>
+                                    <div class="avartar-picker">
+                                        <input type="file" name="photo" id="file-1" class="inputfile" data-multiple-caption="{count} files selected" multiple value="{{user.photo.url}}" />
+                                        <label for="file-1">
+                                            <i class="zmdi zmdi-camera"></i>
+                                            <span>Choisir la photo</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <input class="input--style-2" type="text" placeholder="nom" name="nom" value="{{ user.nom }}" required>
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-2" type="text" placeholder="prenom" name="prenom" value="{{ user.prenom }}" required>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <input class="input--style-2" type="date" placeholder="date de naissance" name="date" value="{{ user.date_nais }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="sexe" required>
+                                                {% if user.sexe == 'Homme' %}
+                                                    <option value="Femme">Femme</option>
+                                                    <option value="Autre">Autre</option>
+                                                    <option value="Homme" selected>Homme</option>
+                                                {% elif user.sexe == 'Femme'   %}
+                                                    <option value="Homme">Homme</option>
+                                                    <option value="Autre">Autre</option>
+                                                    <option value="Femme" selected>Femme</option>
+                                                {% else %}
+                                                    <option value="Homme">Homme</option>
+                                                    <option value="Femme">Femme</option>
+                                                    <option value="Autre" selected>Autre</option>
+                                                {% endif %}
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-2" type="email" placeholder="Adresse email" value="{{ user.email }}" name="email">
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-2" type="text" placeholder="numero de telephone" name="phone" value="{{ user.phone }}" required>
+                            </div>
+                            <div class="p-t-30">
+                                <button class="btn btn--radius btn--blue" type="submit">modifier</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="page-wrapper p-t-180 p-b-100 font-robo" >
+            <div class="wrapper wrapper--w960">
+                <div class="card card-2">
+                    <div class="card-heading"></div>
+                    <div class="card-body">
+                        <h2 class="title">Enregistrement</h2>
+                        
+                        <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-header">
+                                <div class="avartar">
+                                    <a href="#">
+                                        <img src="{% static 'image/img-01.png' %} " alt="">
+                                    </a>
+                                    <div class="avartar-picker">
+                                        <input type="file" name="photo" id="file-1" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                                        <label for="file-1">
+                                            <i class="zmdi zmdi-camera"></i>
+                                            <span>Choisir la photo</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <input class="input--style-2" type="text" placeholder="nom" name="nom" required>
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-2" type="text" placeholder="prenom" name="prenom" required>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <input class="input--style-2" type="date" placeholder="date de naissance" name="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="sexe" required>
+                                                <option disabled="disabled" selected="selected">Sexe</option>
+                                                <option value="Homme">Homme</option>
+                                                <option value="Femme">Femme</option>
+                                                <option value="Autre">Autre</option>
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-2" type="email" placeholder="Adresse email" name="email">
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-2" type="text" placeholder="numero de telephone" name="phone" required>
+                            </div>
+                            <div class="p-t-30">
+                                <button class="btn btn--radius btn--blue" type="submit">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Jquery JS-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/js/jquery.steps.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!-- Vendor JS-->
+    <script src="{% static 'js/select2.min.js' %}"></script>
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/daterangepicker.js' %}"></script>
+
+    <!-- Main JS-->
+    <script src="{% static 'js/global.js' %}"></script>
+    <script src="{% static 'js/main1.js' %}"></script>
+
+</body>
+
+</html>
+<!-- end document-->

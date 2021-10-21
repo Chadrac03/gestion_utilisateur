@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="Fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>www.site-shadow.groupebsm.org</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <!-- CSS Files -->
+  <link href="{% static 'css/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'css/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href=" {% static 'css/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="{% url 'home' %}" class="logo mr-auto"><img src="{% static 'image/logo.png' %} " alt=""></a>
+      
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto " href="{% url 'home' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="utilisateurs">Liste des utilisateurs</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Liste des utilisateurs</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>liste</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <h3 class="section-title">Tous les utilisateurs</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">Tous les utilisateurs et toutes les informations les concernants.</p>
+                </div>
+            </div>
+  
+        {% for el in user %}
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="profile">
+                        <div class="pic"><img src="{{ el.photo.url }}" alt=""></div>
+                        <h4> {{ el.nom }}  {{el.prenom}}</h4>
+                        <span>née le {{el.date_nais}}</span>
+                    </div>
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9">
+                    <div class="quote">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <p> Email : {{el.email}} </p>
+                                <p> Téléphone : {{el.phone}} </p>
+                                <p> sexe : {{el.sexe}} </p>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <form action="{% url 'sup' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{el.id}}" name="ID">
+                                        <button type="submit" class="btn btn-danger">supprimer</button>
+                                    </form>
+                                </div>
+                                <div class="row mt-3">
+                                    <a href="{% url 'modifier' el.id  %}">
+                                        <button type="button" class="btn btn-success">modifier</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         {% endfor %}
+        </div>
+    </section><!-- End Testimonials Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="copyright">
+            &copy; Copyright <strong>SHADOW gestion</strong>. tous les droits reservés
+          </div>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Imperial
+          -->
+            Fait by <a href="#">chadrac brandol</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- JS Files -->
+  <script src="{% static 'js/aos/aos.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/glightbox.min.js' %}"></script>
+  <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/validate.js' %}"></script>
+  <script src="{% static 'Js/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'js/typed.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

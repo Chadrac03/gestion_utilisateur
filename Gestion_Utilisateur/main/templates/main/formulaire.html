@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>bonjour le monde</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        
+        <h3> bOnjour le mOnde </h3>
+
+        {% if user %}
+            <ul>
+                {% for el in user  %}
+                    <li> {{el.nom}} : <img src="{{ el.photo.url }}" style="width:100px ; height : 70px;"> </li>
+                    <form action="{% url 'sup' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{el.id}}" name="ID">
+                        <button type="submit" class="btn btn-danger">supprimer</button>
+                    </form>
+                    <a href="{% url 'modifier' el.id  %}">
+                        <button type="button" class="btn btn-success">modifier</button>
+                    </a>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p> aucunne données </p>
+        {% endif %}
+
+        <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- {{form.as_p}} -->
+            
+            <div class="form-group">
+                <label for="nom">nom :</label>
+                <input type="text" class="form-control" placeholder="nom" name="nom">
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prenom :</label>
+                <input type="text" class="form-control" placeholder="prenom" name="prenom">
+            </div>
+            <div class="form-group">
+                <label for="sexe">sexe:</label>
+                <input type="text" class="form-control" placeholder="sexe" name="sexe">
+            </div>
+            <div class="form-group">
+                <label for="date">date de naissance:</label>
+                <input type="date" class="form-control" placeholder="date de naissance" name="date">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" placeholder="Enter email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone :</label>
+                <input type="phone" class="form-control" placeholder="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="photo">Photo :</label>
+                <input type="file" class="form-control" placeholder="photo" name="photo">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"> enregistrer </button>
+            </div>
+        </form>
+    </body>
+</html>
